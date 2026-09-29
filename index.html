@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عَبَرنا — فيلم وثائقي حرب أكتوبر ١٩٧٣</title>
+<meta name="description" content="عَبَرنا — فيلم وثائقي تفاعلي عن حرب أكتوبر ١٩٧٣. من الهزيمة… إلى العبور… إلى السلام. صور أرشيفية من ويكيميديا كومنز، ور重来 عربي، وترجمة سينمائية.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Cpath d='M13 7l11 9-11 9z' fill='%23d9a441'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Almarai:wght@300;400;700;800&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#reel">تخطَّ إلى نص الفيلم</a>
+
+<!-- ============ atmosphere layers ============ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="filmdust" aria-hidden="true"></div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="framescrim" aria-hidden="true"></div>
+<div class="letterbox letterbox--t" aria-hidden="true"></div>
+<div class="letterbox letterbox--b" aria-hidden="true"></div>
+<div class="scrollrail" aria-hidden="true"><i id="scrollBar"></i></div>
+
+<!-- ============ nav ============ -->
+<header class="topnav">
+  <a class="brand" href="#titlecard" id="brand">عَبَر<b>نا</b></a>
+  <nav class="navlinks" id="navLinks" aria-label="فصول الفيلم"></nav>
+  <div class="navbtns">
+    <button class="btn btn--sm btn--ghost" id="settingsBtn" type="button" aria-haspopup="dialog">
+      <span class="btn__ico" aria-hidden="true">⚙</span><span>إعدادات</span>
+    </button>
+    <button class="btn btn--sm btn--gold" id="navFilm" type="button">
+      <span class="btn__ico" aria-hidden="true">▶</span><span>دخول وضع الفيلم</span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ settings ============ -->
+<div class="settings" id="settings" role="dialog" aria-label="إعدادات" aria-modal="false">
+  <h4>الإعدادات</h4>
+  <div class="setrow">
+    <label for="voiceSel">صوت التعليق (Web Speech)</label>
+    <select id="voiceSel"><option>جارٍ البحث عن الأصوات…</option></select>
+  </div>
+  <div class="setrow">
+    <label for="volSel">مستوى المؤثرات الصوتية</label>
+    <input type="range" id="volSel" min="0" max="100" value="55">
+  </div>
+  <div class="setrow">
+    <label class="switch"><input type="checkbox" id="muteChk"> كتم الصوت بالكامل</label>
+  </div>
+  <div class="setrow">
+    <label class="switch"><input type="checkbox" id="motionChk"> تقليل الحركة (وضع يدوي)</label>
+  </div>
+  <p class="setnote">
+    اختصارات وضع الفيلم: <kbd>Space</kbd> تشغيل/إيقاف · <kbd>→</kbd> <kbd>←</kbd> مشهد بعد/قبل ·
+    <kbd>Esc</kbd> خروج · <kbd>M</kbd> كتم.<br>
+    إن لم يوجد صوت عربي على الجهاز، يعمل الفيلم في «وضع السينما الصامتة» مع ترجمة توقيتية.
+  </p>
+</div>
+
+<!-- ============ title card ============ -->
+<section class="titlecard" id="titlecard" aria-label="شريحة العنوان">
+  <div class="titlecard__bg">
+    <img src="assets/img/soldiers-tanks.jpg" alt="" aria-hidden="true"
+         loading="eager" decoding="async" style="background:#191612">
+  </div>
+  <div class="titlecard__veil" aria-hidden="true"></div>
+  <div class="titlecard__inner">
+    <span class="sixghost" aria-hidden="true">٦</span>
+    <p class="eyebrow">A DOCUMENTARY · 6 OCTOBER 1973</p>
+    <h1 class="bigtitle">عَبَرنا</h1>
+    <p class="subtitle-en">حرب أكتوبر ١٩٧٣</p>
+    <p class="tagline" id="tagline" data-full="من الهزيمة… إلى العبور… إلى السلام"></p>
+    <div class="cta">
+      <button class="btn btn--gold" id="playFilm" type="button">
+        <span class="btn__ico" aria-hidden="true">▶</span><span>شغّل الفيلم</span>
+      </button>
+      <button class="btn" id="browseFree" type="button">تصفّح بحرية</button>
+    </div>
+    <div class="titlemeta">
+      <span>فيلم وثائقي مصري</span>
+      <span>٦ أكتوبر ١٩٧٣</span>
+      <span>٢٢ يومًا</span>
+      <span>١٤٬٦٥٦ شهيدًا</span>
+    </div>
+  </div>
+  <div class="scrollhint" aria-hidden="true"><i></i> SCROLL</div>
+</section>
+
+<!-- ============ timeline strip ============ -->
+<nav class="timeline" id="timeline" aria-label="خط الزمن">
+  <div class="timeline__track" id="timelineTrack"></div>
+</nav>
+
+<!-- ============ the film (rendered from data) ============ -->
+<main class="reel" id="reel"></main>
+
+<noscript>
+  <div style="max-width:68ch;margin:60px auto;padding:0 24px;color:#9a9287">
+    <h2 style="color:#efe9df">محتوى بدون جافاسكربت</h2>
+    <p>هذا الفيلم الوثائقي التفاعلي يحتاج تفعيل الجافاسكربت في المتصفح لعرض فصول حرب أكتوبر ووضع الفيلم والتعليق الصوتي.</p>
+  </div>
+</noscript>
+
+<!-- ============ closing ============ -->
+<section class="closing" id="closing" aria-label="الخاتمة">
+  <span class="closing__six" aria-hidden="true">٦</span>
+  <div class="closing__in">
+    <p class="eyebrow" style="justify-content:center">END TITLES</p>
+    <h2 class="endcard">مصر… لم تعبر القناة مرتين.</h2>
+    <div class="pledge" id="pledge"></div>
+    <div class="crawl" aria-label="أسماء"><div class="crawl__track" id="crawl"></div></div>
+  </div>
+</section>
+
+<!-- ============ credits / sources ============ -->
+<footer class="credits" id="credits">
+  <div class="credits__in">
+    <h3>المصادر ونسب الصور</h3>
+    <p class="credits__note">
+      كل الصور في هذا المشروع صور أرشيفية حقيقية محفوظة في <b>ويكيميديا كومنز</b>، ولا يملك هذا المشروع أي حقوق عليها.
+      راجع كل صورة من ملفها على كومنز للاطلاع على المصدر والرخصة الأصلية. في حالة عدم التأكد من الرخصة، ذُكر المصدر فقط
+      مع رابط صفحة الملف بدلًا من افتراض رخصة.
+    </p>
+    <div class="srclist" id="srcList"></div>
+
+    <h3 style="margin-top:56px">مراجع تاريخية ومقترحات قراءة</h3>
+    <ul class="refs" id="refList"></ul>
+
+    <h3 style="margin-top:56px">عن هذا المشروع</h3>
+    <p class="disclaimer">
+      <b>مشروع تعليمي غير رسمي من صنع جُمعوات.</b>
+      هذا الموقع عمل وثائقي تعليمي متطوع، مستقل تمامًا عن أي جهة حكومية أو عسكرية أو أكاديمية، ولا يمثّل الموقف الرسمي لأي طرف.
+      الغرض منه حفظ الذاكرة وشرح أحداث تاريخية موثّقة للجيل الجديد.
+      الأرقام موثّقة من مصادر مفتوحة (انظر أعلاه)، وقد روعي في تحريرها الدقة والوضوح، مع التنبيه إلى أن التقديرات
+      تختلف بين المصادر بحسب ما إذا كانت تشمل وقائع لاحقة للحرب.
+      بُني بـ HTML و CSS و JavaScript خام بلا أي مكتبات خارجية، ويعمل بفتح الملف مباشرة من القرص الصلب.
+    </p>
+    <p class="endmark">عَبَرنا · فيلم وثائقي · ٦ أكتوبر ١٩٧٣</p>
+  </div>
+</footer>
+
+<!-- ============ film chrome ============ -->
+<div class="subs" id="subs" aria-hidden="true"><div class="subs__box"><p class="subs__text" id="subsText"></p></div></div>
+
+<div class="chrome" id="chrome">
+  <div class="rail" id="rail" role="group" aria-label="فصول الفيلم"></div>
+  <div class="railtip">
+    <span class="railtip__now">
+      <span class="railtip__num" id="railNum">00</span>
+      <span class="railtip__title" id="railTitle">المقدمة</span>
+    </span>
+    <span class="railtip__silent" id="railSilent" hidden>وضع السينما الصامتة</span>
+    <span class="railtip__tc" id="railTc">00:00</span>
+  </div>
+  <div class="ctrls">
+    <button class="ctrl ctrl--play" id="cPlay" type="button" aria-label="تشغيل / إيقاف" title="تشغيل / إيقاف (Space)">▶</button>
+    <button class="ctrl" id="cPrev" type="button" aria-label="المشهد السابق" title="السابق (←)">⏮</button>
+    <button class="ctrl" id="cNext" type="button" aria-label="المشهد التالي" title="التالي (→)">⏭</button>
+    <button class="ctrl" id="cMute" type="button" aria-label="كتم الصوت" title="كتم (M)">🔊</button>
+    <span class="ctrls__keys"><kbd>Space</kbd> <kbd>→</kbd><kbd>←</kbd> <kbd>M</kbd> <kbd>Esc</kbd></span>
+    <button class="ctrl ctrl--exit" id="cExit" type="button" aria-label="خروج من وضع الفيلم" title="خروج (Esc)">⏹</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
